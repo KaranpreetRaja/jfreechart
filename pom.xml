@@ -150,6 +150,62 @@
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.10.0</version>
             </plugin>
+            
+            <plugin>
+    <groupId>org.pitest</groupId>
+    <artifactId>pitest-maven</artifactId>
+    <version>1.18.2</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-junit5-plugin</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+    </dependencies>
+    <configuration>
+        <!-- Target the production classes -->
+        <targetClasses>
+            <param>org.jfree.chart.JFreeChart</param>
+            <param>org.jfree.chart.axis.NumberAxis</param>
+            <param>org.jfree.chart.plot.XYPlot</param>
+            <param>org.jfree.chart.renderer.xy.XYLineAndShapeRenderer</param>
+            <param>org.jfree.data.xy.XYSeries</param>
+            <param>org.jfree.data.time.TimeSeries</param>
+            <param>org.jfree.chart.title.TextTitle</param>
+            <param>org.jfree.data.category.DefaultCategoryDataset</param>
+            <param>org.jfree.data.statistics.HistogramDataset</param>
+            <param>org.jfree.chart.urls.CustomCategoryURLGenerator</param>
+
+        </targetClasses>
+        <!-- Target the corresponding test classes -->
+        <targetTests>
+            <param>org.jfree.chart.*Test</param>
+            <param>org.jfree.chart.axis.*Test</param>
+            <param>org.jfree.chart.plot.*Test</param>
+            <param>org.jfree.chart.renderer.xy.*Test</param>
+            <param>org.jfree.data.xy.*Test</param>
+            <param>org.jfree.data.time.*Test</param>
+            <param>org.jfree.chart.title.*Test</param>
+            <param>org.jfree.data.category.*Test</param>
+            <param>org.jfree.data.statistics.*Test</param>
+            <param>org.jfree.chart.urls.*Test</param>
+            
+        </targetTests>
+        <!-- Output formats -->
+        <outputFormats>
+            <param>HTML</param>
+            <param>XML</param>
+        </outputFormats>
+        <!-- Additional useful configurations -->
+        <threads>4</threads>
+        <timeoutConstant>10000</timeoutConstant>
+        <mutators>
+            <mutator>DEFAULTS</mutator>
+        </mutators>
+    </configuration>
+</plugin>
+
+
         </plugins>
     </build>
 
